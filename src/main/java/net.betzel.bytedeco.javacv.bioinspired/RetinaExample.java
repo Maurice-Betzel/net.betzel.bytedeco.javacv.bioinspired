@@ -48,11 +48,11 @@ public class RetinaExample {
         printMat(matrix);
         Mat gammaTransformedImage = new Mat(matrix.size(), CV_32F);
         pow(matrix, 1. / 5, gammaTransformedImage);
-        Retina retina = createRetina(matrix.size());
+        Retina retina = createRetina(gammaTransformedImage.size());
         Mat retinaOutput_parvo = new Mat();
         Mat retinaOutput_magno = new Mat();
         retina.clearBuffers();
-        retina.run(matrix);
+        retina.run(gammaTransformedImage);
         retina.getParvo(retinaOutput_parvo);
         retina.getMagno(retinaOutput_magno);
         showImage(retinaOutput_parvo);
